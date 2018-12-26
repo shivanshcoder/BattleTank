@@ -8,14 +8,17 @@
 #include "TankPlayerController.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class BATTLETANK_API ATankPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
+	virtual void BeginPlay()override;
+	virtual void Tick(float DeltaTime)override;
+
+	void AimTowardsCrosshair();
 
 	ATank* GetControlledTank()const;
-	virtual void BeginPlay()override;
 };
