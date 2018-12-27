@@ -12,8 +12,8 @@ void ATankPlayerController::Tick(float DeltaTime)
 	AimTowardsCrosshair();
 }
 
-bool ATankPlayerController::GetSightRayHitLocation(FVector & HitLocation)const{
-	
+bool ATankPlayerController::GetSightRayHitLocation(FVector & HitLocation)const {
+
 	//Get the croshair position
 	int32 ViewportSizeX, ViewportSizeY;
 	GetViewportSize(ViewportSizeX, ViewportSizeY);
@@ -22,10 +22,25 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector & HitLocation)const{
 	ScreenLocation.X = ViewportSizeX * CrossHairXLocation;
 	ScreenLocation.Y = ViewportSizeY * CrossHairYLocation;
 
-	HitLocation.X = ScreenLocation.X;
-	HitLocation.Y = ScreenLocation.Y;
+	FVector WorldDirection;
+	if (GetLookDirection(ScreenLocation, WorldDirection)) {
+		UE_LOG(LogTemp, Warning, TEXT("Direction of the CrossHair: %s"), *WorldDirection.ToString())
+	}
+	else {
+		UE_LOG(LogTemp, Warning, TEXT("Error"))
+	}
+
 	return true;
 }
+
+bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector &LookDirection) const
+{
+	FVector WorldLocation;
+
+	return DeprojectScreenPositionToWorld(ScreenLocation.X, ScreenLocation.Y, WorldLocation, LookDirection);
+
+}
+
 
 void ATankPlayerController::AimTowardsCrosshair()
 {
@@ -34,22 +49,22 @@ void ATankPlayerController::AimTowardsCrosshair()
 
 	FVector HitLocation;
 	if (GetSightRayHitLocation(HitLocation)) {
-		UE_LOG(LogTemp, Warning, TEXT("%s"), *HitLocation.ToString());
+		//UE_LOG(LogTemp, Warning, TEXT("%s"), *HitLocation.ToString());
 	}
 }
 
-ATank* ATankPlayerController::GetControlledTank()const{
+ATank* ATankPlayerController::GetControlledTank()const {
 	return Cast<ATank>(GetPawn());
 }
 
 
-void ATankPlayerController::BeginPlay(){
+void ATankPlayerController::BeginPlay() {
 	Super::BeginPlay();
 	UE_LOG(LogTemp, Warning, TEXT("PlayeController Begin Play!"));
 
 	auto ptrTank = GetControlledTank();
-	
-	if(ptrTank)
+
+	if (ptrTank)
 		UE_LOG(LogTemp, Warning, TEXT("Tank %s Possessed"), *ptrTank->GetName())
 	else
 		UE_LOG(LogTemp, Warning, TEXT("Tank not found"))
