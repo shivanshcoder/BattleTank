@@ -14,7 +14,16 @@ void ATankPlayerController::Tick(float DeltaTime)
 
 bool ATankPlayerController::GetSightRayHitLocation(FVector & HitLocation)const{
 	
-	HitLocation = FVector(1.0f);
+	//Get the croshair position
+	int32 ViewportSizeX, ViewportSizeY;
+	GetViewportSize(ViewportSizeX, ViewportSizeY);
+
+	FVector2D ScreenLocation;
+	ScreenLocation.X = ViewportSizeX * CrossHairXLocation;
+	ScreenLocation.Y = ViewportSizeY * CrossHairYLocation;
+
+	HitLocation.X = ScreenLocation.X;
+	HitLocation.Y = ScreenLocation.Y;
 	return true;
 }
 
