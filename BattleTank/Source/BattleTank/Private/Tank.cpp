@@ -9,12 +9,12 @@ ATank::ATank()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	TankAimingComponent = CreateEditorOnlyDefaultSubobject< UTankAimingComponent>(FName("AimingComponent"));
 }
 
 
 void ATank::AimAt(FVector HitLocaiton) {
-	auto OurTankName = GetName();
-	UE_LOG(LogTemp, Warning, TEXT("%s aiming at %s"), *OurTankName, *HitLocaiton.ToString());
+	TankAimingComponent->AimAt((HitLocaiton));
 }
 
 // Called when the game starts or when spawned
