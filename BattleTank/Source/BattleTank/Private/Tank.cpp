@@ -12,6 +12,10 @@ ATank::ATank()
 	TankAimingComponent = CreateEditorOnlyDefaultSubobject< UTankAimingComponent>(FName("AimingComponent"));
 }
 
+void ATank::SetBarrelReference(UStaticMeshComponent * BarrelToSet){
+	TankAimingComponent->SetBarrelReference(BarrelToSet);
+}
+
 
 void ATank::AimAt(FVector HitLocaiton) {
 	TankAimingComponent->AimAt((HitLocaiton));
