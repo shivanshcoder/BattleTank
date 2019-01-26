@@ -2,6 +2,7 @@
 
 #include "Tank.h"
 #include"TankBarrel.h"
+#include"TankTurret.h"
 #include "TankAimingComponent.h"
 
 // Sets default values
@@ -13,8 +14,9 @@ ATank::ATank()
 	TankAimingComponent = CreateEditorOnlyDefaultSubobject< UTankAimingComponent>(FName("AimingComponent"));
 }
 
-void ATank::SetBarrelReference(UTankBarrel * BarrelToSet){
+void ATank::SetReferences(UTankBarrel * BarrelToSet, UTankTurret *TurretToSet){
 	TankAimingComponent->SetBarrelReference(BarrelToSet);
+	TankAimingComponent->SetTurretReference(TurretToSet);
 }
 
 

@@ -3,12 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
-//#include "TankAimingComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
 
 
 class UTankBarrel;
+class UTankTurret;
 class UTankAimingComponent;
 
 UCLASS()
@@ -23,7 +23,7 @@ public:
 	ATank();
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetBarrelReference(UTankBarrel *BarrelToSet);
+	void SetReferences(UTankBarrel *BarrelToSet, UTankTurret *TurretToSet);
 
 protected:
 	UTankAimingComponent *TankAimingComponent = nullptr;
@@ -40,5 +40,5 @@ public:
 	
 private:
 	UPROPERTY(EditAnywhere, Category = Firing)
-		float LaunchSpeed = 100000.0f;
+		float LaunchSpeed = 4000.0f;
 };
