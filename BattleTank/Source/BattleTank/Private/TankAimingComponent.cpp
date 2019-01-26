@@ -2,6 +2,7 @@
 
 #include "TankAimingComponent.h"
 #include"TankBarrel.h"
+#include"Kismet/GameplayStatics.h"
 
 // Sets default values for this component's properties
 UTankAimingComponent::UTankAimingComponent()
@@ -41,14 +42,18 @@ void UTankAimingComponent::AimAt(FVector HitLocaiton, float LaunchSpeed) {
 	if(HaveDirection){
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
 		MoveBarrel(AimDirection);
+		auto time = GetWorld()->GetTimeSeconds();
+		UE_LOG(LogTemp, Warning, TEXT("Barrel found solution at %f"), time)
 	}
+	else
+		UE_LOG(LogTemp, Warning, TEXT("Solution not found "));
+	
 }
 
 void UTankAimingComponent::MoveBarrel(FVector AimDirection){
 	auto BarrelRotator = Barrel->GetForwardVector().Rotation();
 	auto AimAsRotator = AimDirection.Rotation();
 	auto DeltaRotator = BarrelRotator - AimAsRotator;
-	UE_LOG(LogTemp, Warning, TEXT("Aiming Direction %s "), *AimAsRotator.ToString());
-		Barrel->Elevate(5);
+	Barrel->Elevate(5);
 }
 
