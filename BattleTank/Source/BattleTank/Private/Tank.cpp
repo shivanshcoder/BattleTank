@@ -28,10 +28,11 @@ void ATank::Fire()
 
 		UE_LOG(LogTemp, Warning,TEXT("%s"), *Barrel->GetSocketLocation(FName("Projectile")).ToString())
 
-	GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint,
+	auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint,
 		Barrel->GetSocketLocation(FName("Projectile")),
 		Barrel->GetSocketRotation(FName("Projectile"))
 		);
+	Projectile->Launch(LaunchSpeed);
 }
 
 

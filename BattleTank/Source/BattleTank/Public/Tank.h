@@ -51,5 +51,5 @@ private:
 		TSubclassOf<AProjectile>ProjectileBlueprint;
 
 	//Saving Local Reference for spawning
-	UTankBarrel *Barrel;
+	UTankBarrel *Barrel = nullptr;
 };
