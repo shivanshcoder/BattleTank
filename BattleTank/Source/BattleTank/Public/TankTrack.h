@@ -20,4 +20,9 @@ public:
 	//Set throttle between -1 and +1 
 	UFUNCTION(BlueprintCallable, Category = Input)
 	void SetThrottle(float Throttle);
+
+private:
+	//Max Force per Track
+	UPROPERTY(EditDefaultsOnly)
+		float TrackMaxDrivingForce = 400000 * 10; //40,000kg Mass and Accelearation is 10m/s
 };
