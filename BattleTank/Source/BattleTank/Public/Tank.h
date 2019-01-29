@@ -52,4 +52,7 @@ private:
 
 	//Saving Local Reference for spawning
 	UTankBarrel *Barrel = nullptr;
+
+	float ReloadTimeInSec = 3;
+	double LastTimeFire = 0;
 };
