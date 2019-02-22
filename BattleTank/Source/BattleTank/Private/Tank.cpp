@@ -15,7 +15,8 @@ ATank::ATank()
 
 	TankAimingComponent = CreateEditorOnlyDefaultSubobject< UTankAimingComponent>(FName("AimingComponent"));
 
-	TankMovementComponent = CreateEditorOnlyDefaultSubobject< UTankMovementComponent>(FName("MovementComponent"));
+	//REMOVE
+	//TankMovementComponent = CreateEditorOnlyDefaultSubobject< UTankMovementComponent>(FName("MovementComponent"));
 }
 
 void ATank::SetReferences(UTankBarrel * BarrelToSet, UTankTurret *TurretToSet){
