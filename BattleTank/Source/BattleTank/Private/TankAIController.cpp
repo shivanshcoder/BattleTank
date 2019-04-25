@@ -9,8 +9,15 @@
 
 void ATankAIController::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);
-	if (GetPlayerTank()) {
-		GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
-		GetControlledTank()->Fire();
+
+	auto PlayerTank = GetPlayerTank();
+
+	if (PlayerTank) {
+
+
+		MoveToActor(PlayerTank, AcceptanceRadius);
+
+		//GetControlledTank()->AimAt(PlayerTank->GetActorLocation());
+		//GetControlledTank()->Fire();
 	}
 }

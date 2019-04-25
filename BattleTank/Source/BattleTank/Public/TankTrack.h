@@ -24,5 +24,5 @@ public:
 private:
 	//Max Force per Track
 	UPROPERTY(EditDefaultsOnly)
-		float TrackMaxDrivingForce = 4000000 * 10; //40,000kg Mass and Accelearation is 10m/s
+		float TrackMaxDrivingForce = 4000000 * 10; //40,000kg Mass and Accelearation is 10m/s2
 };
