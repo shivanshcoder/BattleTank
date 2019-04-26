@@ -23,15 +23,12 @@ void UTankMovementComponent::IntendTurnRight(float Throw)
 {
 	LeftTrack->SetThrottle(Throw);
 	RightTrack->SetThrottle(-Throw);
-	auto name = GetOwner()->GetName();
-	UE_LOG(LogTemp, Warning, TEXT("Tank %s   Turning Right! :%f"),*name, Throw)
 }
 
 void UTankMovementComponent::IntendTurnLeft(float Throw)
 {
 	LeftTrack->SetThrottle(-Throw);
 	RightTrack->SetThrottle(Throw);
-	UE_LOG(LogTemp, Warning, TEXT("Turning Left! :%f"), Throw)
 
 }
 

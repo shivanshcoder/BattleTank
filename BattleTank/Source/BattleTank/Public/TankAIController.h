@@ -7,7 +7,7 @@
 #include "TankAIController.generated.h"
 
 /**
- * 
+ *
  */
 class ATank;
 
@@ -16,19 +16,18 @@ class BATTLETANK_API ATankAIController : public AAIController
 {
 	GENERATED_BODY()
 
+private:
 
+	ATank* GetControlledTank()const{
+		return Cast<ATank>(GetPawn());	
+	}
 
 	ATank* GetPlayerTank()const {
 		return Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
 	}
-	ATank* GetControlledTank()const
-	{
-		return Cast<ATank>(GetPawn());
-	}
 
 	virtual void Tick(float DeltaTime)override;
 
-private:
 	//How close can the AI tank can get
 	float AcceptanceRadius = 3000;
 
